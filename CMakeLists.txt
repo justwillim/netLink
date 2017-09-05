@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.1)
-cmake_policy(SET CMP0054 NEW)
+cmake_minimum_required(VERSION 2.8)
+#cmake_policy(SET CMP0054 NEW)
 project(netLink)
 
 set(OUTPUT_DIR out)
@@ -9,7 +9,10 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})
 
+
+
 include_directories(PUBLIC include)
+
 aux_source_directory(${SOURCE_DIR} SOURCES)
 add_library(shared SHARED ${SOURCES})
 add_library(static STATIC ${SOURCES})
@@ -48,5 +51,8 @@ target_link_libraries(example_tcp shared)
 target_link_libraries(example_udp shared)
 
 file(GLOB INCLUDE_HEADERS "include/*.h")
+
+add_custom_target(headers SOURCES ${INCLUDE_HEADERS})
+
 install(FILES ${INCLUDE_HEADERS} DESTINATION include/${CMAKE_PROJECT_NAME})
 install(TARGETS shared DESTINATION lib)
