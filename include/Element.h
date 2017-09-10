@@ -116,7 +116,7 @@ protected:
   virtual int64_t startSerialize()
   {
     return 0;
-  };
+  }
   //! Reads in one byte and returns the initial deserializer position in bytes
   //! (negative value if there is a header)
   virtual int64_t startDeserialize(uint8_t firstByte) = 0;
@@ -131,18 +131,18 @@ protected:
                                       std::streamsize             bytes)
   {
     return 0;
-  };
+  }
   //! Returns true if the header of a container is deserialized and reserves the
   //! necessary space for its element vector
   virtual bool containerDeserialized()
   {
     return false;
-  };
+  }
   //! Returns a raw pointer to the element vector of a container
   virtual std::vector<std::unique_ptr<Element> >* getElementsVector()
   {
     return NULL;
-  };
+  }
   //! Returns the first invalid (de)serializer position
   virtual int64_t getEndPos() const = 0;
 
@@ -161,6 +161,6 @@ public:
   virtual uint32_t getSizeInBytes() const
   {
     return static_cast<uint32_t>(getEndPos());
-  };
+  }
 };
-};
+}

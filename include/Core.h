@@ -78,4 +78,4 @@ public:
 
 //! Initialize netLink (only neccessary if windows)
 void init();
-};
+}

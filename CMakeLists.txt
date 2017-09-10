@@ -56,3 +56,34 @@ add_custom_target(headers SOURCES ${INCLUDE_HEADERS})
 
 install(FILES ${INCLUDE_HEADERS} DESTINATION include/${CMAKE_PROJECT_NAME})
 install(TARGETS shared DESTINATION lib)
+install(TARGETS static DESTINATION lib)
+
+set(PROJECT_VERSION_MAJOR 0)
+set(PROJECT_VERSION_MINOR 1)
+set(PROJECT_VERSION_PATCH 0)
+set(PROJECT_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
+
+include(CMakePackageConfigHelpers)
+set(${PROJECT_NAME}_INCLUDE_DIR include/
+  CACHE PATH "The directory where netLink headers are installed")
+set(${PROJECT_NAME}_CONFIG_CMAKE_PATH lib${LIB_SUFFIX}/cmake/${PROJECT_NAME}
+  CACHE PATH "The directory where the CMake files are installed")
+
+set(${PROJECT_NAME}_USE_FILE ${${PROJECT_NAME}_CONFIG_CMAKE_PATH}/Use${PROJECT_NAME}.cmake)
+
+configure_package_config_file(cmake/${PROJECT_NAME}Config.cmake.in
+  ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+  INSTALL_DESTINATION ${${PROJECT_NAME}_CONFIG_CMAKE_PATH}
+  PATH_VARS ${PROJECT_NAME}_INCLUDE_DIR ${PROJECT_NAME}_USE_FILE)
+write_basic_package_version_file(
+  ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+  VERSION ${PROJECT_VERSION}
+  COMPATIBILITY SameMajorVersion)
+
+# Install targets
+
+install(FILES
+  ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+  ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Use${PROJECT_NAME}.cmake
+  DESTINATION ${${PROJECT_NAME}_CONFIG_CMAKE_PATH})

@@ -29,6 +29,10 @@ namespace MsgPack
 //! MsgPack::Element to represent the header of a dynamical length element
 class Header : public Element
 {
+public:
+  virtual ~Header();
+
+private:
   friend class Serializer;
   friend class Deserializer;
 
@@ -52,4 +56,4 @@ public:
   //! Returns the content length in bytes
   virtual uint32_t getLength() const;
 };
-};
+}

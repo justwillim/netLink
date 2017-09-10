@@ -69,4 +69,4 @@ public:
   //! Returns the count of elements in the container
   uint32_t getLength() const;
 };
-};
+}

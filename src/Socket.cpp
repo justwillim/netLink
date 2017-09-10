@@ -370,6 +370,12 @@ Socket::initSocket(bool blockingConnect)
   readSockaddr(&localAddr, hostLocal, portLocal);
 }
 
+std::shared_ptr<Socket>
+Socket::SocketFactory()
+{
+  return std::shared_ptr<Socket>(new Socket());
+}
+
 void
 Socket::initAsTcpClient(const std::string& _hostRemote, unsigned _portRemote,
                         bool waitUntilConnected)
@@ -418,11 +424,15 @@ Socket::Socket()
 #else
   setOutputBufferSize(0);
 #endif
-};
+}
 
 Socket::~Socket()
 {
   disconnect();
+  if (eback())
+    delete[] eback();
+  if (pbase())
+    delete[] pbase();
 }
 
 Socket::IPVersion
@@ -783,4 +793,14 @@ Socket::disconnectOnError()
   if (error != 0)
     disconnect();
 }
-};
+
+Socket::AddrinfoDestructor::AddrinfoDestructor()
+{
+}
+
+void
+Socket::AddrinfoDestructor::operator()(addrinfo* res) const
+{
+  freeaddrinfo(res);
+}
+}

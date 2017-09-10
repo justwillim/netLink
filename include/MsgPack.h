@@ -49,7 +49,9 @@ std::unique_ptr<MsgPack::Element> Factory(float value);
 //! Make unique MsgPack::Number from double
 std::unique_ptr<MsgPack::Element> Factory(double value);
 
+std::unique_ptr<MsgPack::Element> Factory(const void* buffer, int len);
+
 //! Convenience factory method for MsgPack::Elements which need explicit types
 //! or additional arguments
 #define MsgPack__Factory(x) std::unique_ptr<MsgPack::Element>(new MsgPack::x)
-};
+}

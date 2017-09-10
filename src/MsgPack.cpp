@@ -256,6 +256,10 @@ Factory(bool value)
   return std::unique_ptr<Element>(new Primitive(value));
 }
 
+Header::~Header()
+{
+}
+
 int64_t
 Header::startSerialize()
 {
@@ -369,6 +373,10 @@ Data::deserialize(int64_t& pos, std::basic_streambuf<char>* streamBuffer,
   }
 
   return bytesDone;
+}
+
+Binary::Binary()
+{
 }
 
 Binary::Binary(uint32_t len, const void* _data)
@@ -1521,4 +1529,10 @@ operator<<(std::ostream& ostream, const Element& obj)
   obj.toJSON(ostream);
   return ostream;
 }
-};
+
+std::unique_ptr<Element>
+Factory(const void* buffer, int len)
+{
+  return std::unique_ptr<Element>(new Binary(len, buffer));
+}
+}

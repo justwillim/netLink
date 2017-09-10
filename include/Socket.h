@@ -36,11 +36,8 @@ class Socket : public std::streambuf
 
   struct AddrinfoDestructor
   {
-    AddrinfoDestructor(){};
-    void operator()(struct addrinfo* res) const
-    {
-      freeaddrinfo(res);
-    }
+    AddrinfoDestructor();
+    void operator()(struct addrinfo* res) const;
   };
   typedef std::unique_ptr<struct addrinfo, AddrinfoDestructor>
                     AddrinfoContainer;
@@ -91,7 +88,7 @@ public:
     TCP_CLIENT,         //!< TCP socket connecting to a server
     TCP_SERVER,         //!< TCP socket waiting for TCP_CLIENT to connect
     TCP_SERVERS_CLIENT, //!< TCP socket to represent a TCP_CLIENT connection at
-                        //!the TCP_SERVER
+                        //! the TCP_SERVER
     UDP_PEER            //!< UDP socket
   };
 
@@ -100,11 +97,11 @@ public:
   {
     NOT_CONNECTED, //!< Socket is not even initialized or disconnected
     CONNECTING,    //!< Socket is initialized but not connected yet and can not
-                   //!send or receive data
+                   //! send or receive data
     LISTENING,     //!< Socket is a server and can neither send nor receive data
     READY,         //!< Socket is connected, can send and receive data
     BUSY //!< Socket is connected and can not send but receive data (at the
-         //!moment)
+         //! moment)
   };
 
 protected:
@@ -117,10 +114,7 @@ protected:
                           */
   void initSocket(bool blocking);
   //! Generates new sockets for client connections of a server
-  virtual std::shared_ptr<Socket> SocketFactory()
-  {
-    return std::shared_ptr<Socket>(new Socket());
-  }
+  virtual std::shared_ptr<Socket> SocketFactory();
 
 public:
   std::set<std::shared_ptr<Socket> > clients;   //!< Client sockets of a server
@@ -244,4 +238,4 @@ public:
   //! is one
   void disconnectOnError();
 };
-};
+}

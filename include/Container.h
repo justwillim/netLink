@@ -22,6 +22,7 @@
 #pragma once
 
 #include "ContainerHeader.h"
+#include "Data.h"
 
 namespace MsgPack
 {
@@ -83,4 +84,4 @@ public:
   //! Returns the value at the index or nullptr if out of bounds
   Element* getValue(uint32_t index) const;
 };
-};
+}

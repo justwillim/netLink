@@ -1,0 +1,5 @@
+/home/wu/git/netLink/build/CMakeFiles/example_tcp.dir
+/home/wu/git/netLink/build/CMakeFiles/example_udp.dir
+/home/wu/git/netLink/build/CMakeFiles/headers.dir
+/home/wu/git/netLink/build/CMakeFiles/shared.dir
+/home/wu/git/netLink/build/CMakeFiles/static.dir

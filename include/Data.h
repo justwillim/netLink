@@ -49,9 +49,7 @@ class Binary : public Data
   friend class Deserializer;
 
 protected:
-  Binary()
-  {
-  }
+  Binary();
   int64_t getEndPos() const;
   int64_t getHeaderLength() const;
 
@@ -117,4 +115,4 @@ public:
   //! Returns a std::string represenation of the content
   std::string stdString() const;
 };
-};
+}

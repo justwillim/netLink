@@ -47,12 +47,12 @@ protected:
 class Serializer : public StreamManager
 {
   typedef std::function<std::unique_ptr<Element>()> PullCallback; //!< Typedef
-                                                                  //!of callback
-                                                                  //!to get the
-                                                                  //!next
-                                                                  //!element to
-                                                                  //!be
-                                                                  //!serialized
+  //! of callback
+  //! to get the
+  //! next
+  //! element to
+  //! be
+  //! serialized
 public:
   /*! Constructs the Serializer
    @param _streamBuffer A std::streambuf to be used as target for read
@@ -134,4 +134,4 @@ public:
 };
 
 std::ostream& operator<<(std::ostream& ostream, const Element& obj);
-};
+}

@@ -209,4 +209,4 @@ SocketManager::listen(double waitUpToSeconds)
     }
   }
 }
-};
+}

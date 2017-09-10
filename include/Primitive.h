@@ -60,4 +60,4 @@ public:
     return (type == Type::BOOL_TRUE);
   }
 };
-};
+}

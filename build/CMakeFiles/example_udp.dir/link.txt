@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/example_udp.dir/src/examples/udp.cpp.o  -o out/example_udp -rdynamic out/libnetLink.so -Wl,-rpath,/home/wu/git/netLink/build/out 
